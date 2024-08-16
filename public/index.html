@@ -1,26 +1,33 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>Welcome to My Website</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <h1 id="welcome" style="color: #36c1c0">
-        Welcome to My Website!!! updated version
+      Welcome to My Website!!! updated version blabla
     </h1>
     <p>Thank you for visiting. Enjoy your stay!</p>
 
     <form action="/api/login" method="POST">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required /><br /><br />
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required /><br /><br />
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required /><br /><br />
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        required
+      /><br /><br />
 
-        <input type="button" value="Login" onclick="window.location.href='/learning'" />
-        <input type="reset" value="Reset" />
+      <input
+        type="button"
+        value="Login"
+        onclick="window.location.href='/learning'"
+      />
+      <input type="reset" value="Reset" />
     </form>
-</body>
-
+  </body>
 </html>
