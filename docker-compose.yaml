@@ -1,0 +1,30 @@
+version: "3"
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # ports:
+    #   - 3000 # no host port then it will expose random port, don't need it to work in this case
+    environment:
+      - NODE_ENV=development
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: always
+    networks:
+      - mynetwork
+  nginx:
+    image: nginx
+    restart: "always"
+    ports:
+      - 8081:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - web
+    networks:
+      - mynetwork
+networks:
+  mynetwork:
+    driver: bridge
