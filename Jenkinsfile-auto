@@ -17,7 +17,8 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'docker build -t nodejs-random-color:latest .'
+                // sh 'docker build -t nodejs-random-color:latest .'
+                sh 'docker buildx build --platform linux/arm64 -t nodejs-random-color:latest .'
             }
         }
         stage('Upload image to ECR') {
@@ -43,3 +44,12 @@ pipeline {
         }
     }
 }
+
+// # Authenticate Docker with ECR
+// aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 339713048139.dkr.ecr.ap-northeast-1.amazonaws.com
+
+// # Tag your Docker image
+// sudo docker tag nodejs-random-color:latest 339713048139.dkr.ecr.ap-northeast-1.amazonaws.com/node-jenkins:test1
+
+// # Push the Docker image
+// sudo docker push 339713048139.dkr.ecr.ap-northeast-1.amazonaws.com/node-jenkins:test1
