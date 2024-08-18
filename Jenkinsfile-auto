@@ -1,12 +1,12 @@
 pipeline {
     agent any
     environment{
-        FULL_IMAGE = "339713048139.dkr.ecr.ap-northeast-1.amazonaws.com/node-jenkins:ver-2"
+        FULL_IMAGE = "339713048139.dkr.ecr.ap-northeast-1.amazonaws.com/node-jenkins:latest"
         TASK_DEFINITION =""
         NEW_TASK_DEFINITION=""
         NEW_TASK_INFO=""
         NEW_REVISION=""
-        TASK_FAMILY="nodejs-task-definition"
+        TASK_FAMILY="node-ecr"
     }
     stages {
         stage('Build') {
@@ -18,9 +18,9 @@ pipeline {
             steps {
                 sh 'aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 430950558682.dkr.ecr.ap-northeast-1.amazonaws.com'
 
-                sh 'docker tag nodejs-random-color:latest 339713048139.dkr.ecr.ap-northeast-1.amazonaws.com/node-jenkins:ver-2'
+                sh 'docker tag nodejs-random-color:latest 339713048139.dkr.ecr.ap-northeast-1.amazonaws.com/node-jenkins:latest'
                 
-                sh 'docker push 339713048139.dkr.ecr.ap-northeast-1.amazonaws.com/node-jenkins:ver-2'
+                sh 'docker push 339713048139.dkr.ecr.ap-northeast-1.amazonaws.com/node-jenkins:latest'
             }
         }
         
