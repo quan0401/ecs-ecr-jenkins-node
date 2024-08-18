@@ -17,8 +17,12 @@ pipeline {
         }
         stage('Build') {
             steps {
+                // docker buildx create --use
+                // docker buildx inspect --bootstrap
+                // RROR: failed to solve: process "/bin/sh -c npm install"
+
                 // sh 'docker build -t nodejs-random-color:latest .'
-                sh 'docker buildx build --platform linux/arm64 -t nodejs-random-color:latest .'
+                sh 'docker buildx build --platform linux/arm64 -t nodejs-random-color:latest . --load'
             }
         }
         stage('Upload image to ECR') {
